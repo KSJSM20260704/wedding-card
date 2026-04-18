@@ -90,7 +90,7 @@
 
         .invitation-text { font-size: 15px; line-height: 2.3; color: #444; }
 
-        /* --- 정렬이 수정된 혼주 정보 스타일 --- */
+        /* --- 혼주 정보 세로 라인 정렬 --- */
         .parents-info {
             margin-top: 60px;
             display: flex;
@@ -100,22 +100,22 @@
         .parents-line {
             display: flex;
             width: 100%;
-            max-width: 300px;
-            justify-content: flex-start;
+            max-width: 320px;
+            justify-content: center;
             line-height: 2.5;
         }
         .parents-relation {
-            flex: 1.2;
+            flex: 1.3;
             text-align: right;
             font-size: 16px;
             color: #444;
         }
         .couple-name-tag {
-            flex: 0.8;
+            flex: 0.7;
             text-align: left;
             font-size: 18px;
             font-weight: 500;
-            margin-left: 15px; /* 관계와 이름 사이의 간격 */
+            margin-left: 20px;
         }
 
         .swiper { width: 100%; height: 500px; }
@@ -148,13 +148,15 @@
             margin: 0 auto;
         }
 
-        .location-info { text-align: left; background: #fafafa; padding: 30px; margin-top: 20px; }
-        .location-info strong { display: block; font-size: 18px; margin-bottom: 5px; }
-        .location-info p { margin: 0 0 20px 0; font-size: 14px; color: #666; line-height: 1.6; }
+        /* --- 예식장 정보 중앙 정렬 --- */
+        .location-info { text-align: center; background: #fafafa; padding: 40px 25px; margin-top: 20px; }
+        .location-info strong { display: block; font-size: 20px; margin-bottom: 10px; font-weight: 500; }
+        .location-info p { margin: 0 0 30px 0; font-size: 14px; color: #666; line-height: 1.6; }
         
-        .btn-group { display: flex; justify-content: space-between; gap: 10px; }
+        .btn-group { display: flex; justify-content: center; gap: 10px; }
         .btn {
             flex: 1;
+            max-width: 150px;
             padding: 14px 0;
             background-color: #ffffff;
             border: 1px solid #ddd;
@@ -163,35 +165,44 @@
             font-size: 13px;
             letter-spacing: 1px;
             transition: all 0.2s;
-            text-align: center;
         }
-        .btn:hover { background-color: #f9f9f9; border-color: #bbb; }
+        .btn:hover { background-color: #f9f9f9; }
 
-        .acc-box { text-align: left; margin-bottom: 30px; }
+        /* --- 계좌번호 한 줄 레이아웃 --- */
+        .acc-box { text-align: left; margin-bottom: 40px; }
         .acc-title {
             font-size: 16px;
             color: var(--point-color);
             border-bottom: 1px solid var(--line-color);
             padding-bottom: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-weight: 500;
         }
-        .acc-row { margin-bottom: 25px; }
-        .acc-row:last-child { margin-bottom: 0; }
-        .acc-name { font-size: 16px; display: block; margin-bottom: 5px; }
-        .acc-num { font-size: 14px; color: #666; font-family: sans-serif; letter-spacing: 0.5px; }
+        .acc-row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f9f9f9;
+        }
+        .acc-row:last-child { border-bottom: none; }
+        .acc-text-wrap { display: flex; align-items: center; gap: 10px; flex: 1; overflow: hidden; }
+        .acc-name { font-size: 15px; font-weight: 500; white-space: nowrap; flex-shrink: 0; }
+        .acc-num { font-size: 13px; color: #777; font-family: sans-serif; letter-spacing: -0.2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        
         .copy-btn {
             background-color: transparent;
-            border: 1px solid #ccc;
-            color: #555;
+            border: 1px solid #ddd;
+            color: #888;
             padding: 5px 12px;
-            font-size: 12px;
+            font-size: 11px;
             cursor: pointer;
-            margin-top: 8px;
+            margin-left: 10px;
+            flex-shrink: 0;
             font-family: 'Noto Serif KR', serif;
-            transition: 0.2s;
         }
-        .copy-btn:hover { background-color: #f5f5f5; }
+        .copy-btn:hover { background-color: #f5f5f5; color: #333; border-color: #bbb; }
 
         .footer {
             padding: 60px 20px;
@@ -240,7 +251,6 @@
 
     <div class="sec fade-up" style="background-color: #fafafa; padding-bottom: 110px;">
         <div class="sec-title">Gallery</div>
-        
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><img src="1.jpg" alt="웨딩사진 1"></div>
@@ -282,11 +292,9 @@
 
     <div class="sec fade-up">
         <div class="sec-title">Location</div>
-        
         <div class="location-info">
             <strong>하우스 오브 더 라움</strong>
-            <p style="margin-bottom: 5px;">아마리스홀 (B1F)</p>
-            <p>서울 광진구 능동로 81</p>
+            <p>서울 광진구 능동로 81 B1F 아마리스홀</p>
             
             <div class="btn-group">
                 <a href="https://map.naver.com/v5/search/하우스오브더라움" target="_blank" class="btn">네이버 지도</a>
@@ -302,44 +310,56 @@
         <div class="acc-box">
             <div class="acc-title">신랑측 계좌</div>
             <div class="acc-row">
-                <span class="acc-name">아버지 조윤형</span>
-                <span class="acc-num">하나은행 374-910025-96807</span><br>
-                <button class="copy-btn" onclick="copyToClipboard('374-910025-96807', '조윤형')">계좌번호 복사</button>
+                <div class="acc-text-wrap">
+                    <span class="acc-name">신랑 조성민</span>
+                    <span class="acc-num">카카오뱅크 3333-24-2780476</span>
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard('3333-24-2780476', '조성민')">복사</button>
             </div>
             <div class="acc-row">
-                <span class="acc-name">어머니 문정희</span>
-                <span class="acc-num">카카오뱅크 3333-34-4275498</span><br>
-                <button class="copy-btn" onclick="copyToClipboard('3333-34-4275498', '문정희')">계좌번호 복사</button>
+                <div class="acc-text-wrap">
+                    <span class="acc-name">아버지 조윤형</span>
+                    <span class="acc-num">하나은행 374-910025-96807</span>
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard('374-910025-96807', '조윤형')">복사</button>
             </div>
             <div class="acc-row">
-                <span class="acc-name">신랑 조성민</span>
-                <span class="acc-num">카카오뱅크 3333-24-2780476</span><br>
-                <button class="copy-btn" onclick="copyToClipboard('3333-24-2780476', '조성민')">계좌번호 복사</button>
+                <div class="acc-text-wrap">
+                    <span class="acc-name">어머니 문정희</span>
+                    <span class="acc-num">카카오뱅크 3333-34-4275498</span>
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard('3333-34-4275498', '문정희')">복사</button>
             </div>
         </div>
 
         <div class="acc-box" style="margin-top: 50px;">
             <div class="acc-title">신부측 계좌</div>
             <div class="acc-row">
-                <span class="acc-name">아버지 김원영</span>
-                <span class="acc-num">NH농협 302-0859-9890-91</span><br>
-                <button class="copy-btn" onclick="copyToClipboard('302-0859-9890-91', '김원영')">계좌번호 복사</button>
+                <div class="acc-text-wrap">
+                    <span class="acc-name">신부 김수정</span>
+                    <span class="acc-num">NH농협 302-0884-0299-41</span>
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard('302-0884-0299-41', '김수정')">복사</button>
             </div>
             <div class="acc-row">
-                <span class="acc-name">어머니 백경희</span>
-                <span class="acc-num">NH농협 302-1430-0848-21</span><br>
-                <button class="copy-btn" onclick="copyToClipboard('302-1430-0848-21', '백경희')">계좌번호 복사</button>
+                <div class="acc-text-wrap">
+                    <span class="acc-name">아버지 김원영</span>
+                    <span class="acc-num">NH농협 302-0859-9890-91</span>
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard('302-0859-9890-91', '김원영')">복사</button>
             </div>
             <div class="acc-row">
-                <span class="acc-name">신부 김수정</span>
-                <span class="acc-num">NH농협 302-0884-0299-41</span><br>
-                <button class="copy-btn" onclick="copyToClipboard('302-0884-0299-41', '김수정')">계좌번호 복사</button>
+                <div class="acc-text-wrap">
+                    <span class="acc-name">어머니 백경희</span>
+                    <span class="acc-num">NH농협 302-1430-0848-21</span>
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard('302-1430-0848-21', '백경희')">복사</button>
             </div>
         </div>
     </div>
 
     <div class="footer">
-        감사합니다.<br>예쁘게 잘 살겠습니다.
+        축복해 주셔서 감사합니다.<br>예쁘게 잘 살겠습니다.
     </div>
 
 </div>
