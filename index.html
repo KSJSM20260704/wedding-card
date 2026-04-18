@@ -6,16 +6,14 @@
     <title>성민 & 수정 결혼합니다</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Noto+Serif+KR:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
     <style>
-        /* --- 기본 에디토리얼 스타일 --- */
         :root {
-            --bg-color: #ffffff; /* 깨끗한 화이트 배경 */
-            --text-color: #2b2b2b; /* 너무 진하지 않은 부드러운 블랙 */
-            --point-color: #9c8a7c; /* 고급스러운 웜타우프(베이지/브라운) 포인트 */
-            --line-color: #eaeaea; /* 연한 구분선 */
+            --bg-color: #ffffff;
+            --text-color: #2b2b2b;
+            --point-color: #9c8a7c;
+            --line-color: #eaeaea;
         }
 
         body {
@@ -26,7 +24,7 @@
             text-align: center;
             line-height: 2;
             word-break: keep-all;
-            -webkit-font-smoothing: antialiased; /* 글씨를 더 부드럽게 */
+            -webkit-font-smoothing: antialiased;
         }
 
         .wrap {
@@ -37,7 +35,6 @@
             overflow: hidden;
         }
 
-        /* --- 스크롤시 스르륵 나타나는 애니메이션 (살롱드레터 감성) --- */
         .fade-up {
             opacity: 0;
             transform: translateY(30px);
@@ -48,7 +45,6 @@
             transform: translateY(0);
         }
 
-        /* --- 공통 섹션 스타일 --- */
         .sec { padding: 90px 25px; }
         .sec-title {
             font-family: 'Cormorant Garamond', serif;
@@ -59,7 +55,6 @@
             margin-bottom: 50px;
         }
 
-        /* --- 1. 메인 커버 --- */
         .main-cover { padding-top: 80px; padding-bottom: 40px; }
         .main-names {
             font-size: 24px;
@@ -74,7 +69,6 @@
             color: var(--point-color);
         }
 
-        /* 메인 사진 영역 */
         .main-img-wrap {
             width: 100%;
             height: 550px;
@@ -83,7 +77,6 @@
         }
         .main-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* 메인 사진 위 필기체 오버레이 */
         .overlay-script {
             position: absolute;
             bottom: -30px;
@@ -95,23 +88,42 @@
             z-index: 2;
         }
 
-        /* --- 2. 초대글 --- */
         .invitation-text { font-size: 15px; line-height: 2.3; color: #444; }
+
+        /* --- 정렬이 수정된 혼주 정보 스타일 --- */
         .parents-info {
             margin-top: 60px;
-            font-size: 16px;
-            line-height: 2.2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .parents-info span { font-size: 18px; margin-left: 12px; font-weight: 500; }
+        .parents-line {
+            display: flex;
+            width: 100%;
+            max-width: 300px;
+            justify-content: flex-start;
+            line-height: 2.5;
+        }
+        .parents-relation {
+            flex: 1.2;
+            text-align: right;
+            font-size: 16px;
+            color: #444;
+        }
+        .couple-name-tag {
+            flex: 0.8;
+            text-align: left;
+            font-size: 18px;
+            font-weight: 500;
+            margin-left: 15px; /* 관계와 이름 사이의 간격 */
+        }
 
-        /* --- 3. 갤러리 --- */
         .swiper { width: 100%; height: 500px; }
         .swiper-slide { background-color: #f5f5f5; }
         .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
         .swiper-button-next, .swiper-button-prev { color: #fff !important; text-shadow: 0 0 5px rgba(0,0,0,0.3); }
         .swiper-pagination-bullet-active { background: var(--point-color) !important; }
 
-        /* --- 4. 달력 --- */
         .calendar-wrap { margin-top: 40px; }
         .calendar {
             display: grid;
@@ -123,7 +135,7 @@
             color: #555;
         }
         .cal-head { color: #999; font-size: 12px; border-bottom: 1px solid var(--line-color); padding-bottom: 10px; margin-bottom: 10px; }
-        .sun { color: #d98880; } /* 일요일 부드러운 붉은색 */
+        .sun { color: #d98880; }
         .d-day {
             background-color: var(--point-color);
             color: #ffffff !important;
@@ -136,7 +148,6 @@
             margin: 0 auto;
         }
 
-        /* --- 5. 오시는 길 (지도) --- */
         .location-info { text-align: left; background: #fafafa; padding: 30px; margin-top: 20px; }
         .location-info strong { display: block; font-size: 18px; margin-bottom: 5px; }
         .location-info p { margin: 0 0 20px 0; font-size: 14px; color: #666; line-height: 1.6; }
@@ -156,7 +167,6 @@
         }
         .btn:hover { background-color: #f9f9f9; border-color: #bbb; }
 
-        /* --- 6. 마음 전하실 곳 (계좌) --- */
         .acc-box { text-align: left; margin-bottom: 30px; }
         .acc-title {
             font-size: 16px;
@@ -183,7 +193,6 @@
         }
         .copy-btn:hover { background-color: #f5f5f5; }
 
-        /* --- 푸터 --- */
         .footer {
             padding: 60px 20px;
             background-color: var(--point-color);
@@ -218,8 +227,14 @@
         </div>
         
         <div class="parents-info">
-            조윤형 · 문정희 의 아들 <span>조성민</span><br>
-            김원영 · 백경희 의 딸 <span>김수정</span>
+            <div class="parents-line">
+                <div class="parents-relation">조윤형 · 문정희 의 아들</div>
+                <div class="couple-name-tag">조성민</div>
+            </div>
+            <div class="parents-line">
+                <div class="parents-relation">김원영 · 백경희 의 딸</div>
+                <div class="couple-name-tag">김수정</div>
+            </div>
         </div>
     </div>
 
@@ -228,12 +243,12 @@
         
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-    <div class="swiper-slide"><img src="1.jpg" alt="웨딩사진 1"></div>
-    <div class="swiper-slide"><img src="2.jpg" alt="웨딩사진 2"></div>
-    <div class="swiper-slide"><img src="3.jpg" alt="웨딩사진 3"></div>
-    <div class="swiper-slide"><img src="4.jpg" alt="웨딩사진 4"></div>
-    <div class="swiper-slide"><img src="5.jpg" alt="웨딩사진 5"></div>
-</div>
+                <div class="swiper-slide"><img src="1.jpg" alt="웨딩사진 1"></div>
+                <div class="swiper-slide"><img src="2.jpg" alt="웨딩사진 2"></div>
+                <div class="swiper-slide"><img src="3.jpg" alt="웨딩사진 3"></div>
+                <div class="swiper-slide"><img src="4.jpg" alt="웨딩사진 4"></div>
+                <div class="swiper-slide"><img src="5.jpg" alt="웨딩사진 5"></div>
+            </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-pagination"></div>
@@ -243,7 +258,7 @@
     <div class="sec fade-up">
         <div class="sec-title">The Day</div>
         <p style="font-size: 18px; margin-bottom: 10px;"><strong>2026년 7월 4일</strong></p>
-        <p style="font-size: 15px; color: #666;">토요일 낮 12시</p>
+        <p style="font-size: 15px; color: #666;">토요일 오후 4시</p>
         
         <div class="calendar-wrap">
             <div class="calendar">
@@ -269,8 +284,9 @@
         <div class="sec-title">Location</div>
         
         <div class="location-info">
-            <strong>하우스오브더라움</strong>
-            <p>서울특별시 광진구 (상세 주소를 입력하세요)</p>
+            <strong>하우스 오브 더 라움</strong>
+            <p style="margin-bottom: 5px;">아마리스홀 (B1F)</p>
+            <p>서울 광진구 능동로 81</p>
             
             <div class="btn-group">
                 <a href="https://map.naver.com/v5/search/하우스오브더라움" target="_blank" class="btn">네이버 지도</a>
@@ -287,18 +303,18 @@
             <div class="acc-title">신랑측 계좌</div>
             <div class="acc-row">
                 <span class="acc-name">아버지 조윤형</span>
-                <span class="acc-num">은행명 000-000-000000</span><br>
-                <button class="copy-btn" onclick="copyToClipboard('000-000-000000', '조윤형')">계좌번호 복사</button>
+                <span class="acc-num">하나은행 374-910025-96807</span><br>
+                <button class="copy-btn" onclick="copyToClipboard('374-910025-96807', '조윤형')">계좌번호 복사</button>
             </div>
             <div class="acc-row">
                 <span class="acc-name">어머니 문정희</span>
-                <span class="acc-num">은행명 000-000-000000</span><br>
-                <button class="copy-btn" onclick="copyToClipboard('000-000-000000', '문정희')">계좌번호 복사</button>
+                <span class="acc-num">카카오뱅크 3333-34-4275498</span><br>
+                <button class="copy-btn" onclick="copyToClipboard('3333-34-4275498', '문정희')">계좌번호 복사</button>
             </div>
             <div class="acc-row">
                 <span class="acc-name">신랑 조성민</span>
-                <span class="acc-num">은행명 000-000-000000</span><br>
-                <button class="copy-btn" onclick="copyToClipboard('000-000-000000', '조성민')">계좌번호 복사</button>
+                <span class="acc-num">카카오뱅크 3333-24-2780476</span><br>
+                <button class="copy-btn" onclick="copyToClipboard('3333-24-2780476', '조성민')">계좌번호 복사</button>
             </div>
         </div>
 
@@ -306,18 +322,18 @@
             <div class="acc-title">신부측 계좌</div>
             <div class="acc-row">
                 <span class="acc-name">아버지 김원영</span>
-                <span class="acc-num">은행명 000-000-000000</span><br>
-                <button class="copy-btn" onclick="copyToClipboard('000-000-000000', '김원영')">계좌번호 복사</button>
+                <span class="acc-num">NH농협 302-0859-9890-91</span><br>
+                <button class="copy-btn" onclick="copyToClipboard('302-0859-9890-91', '김원영')">계좌번호 복사</button>
             </div>
             <div class="acc-row">
                 <span class="acc-name">어머니 백경희</span>
-                <span class="acc-num">은행명 000-000-000000</span><br>
-                <button class="copy-btn" onclick="copyToClipboard('000-000-000000', '백경희')">계좌번호 복사</button>
+                <span class="acc-num">NH농협 302-1430-0848-21</span><br>
+                <button class="copy-btn" onclick="copyToClipboard('302-1430-0848-21', '백경희')">계좌번호 복사</button>
             </div>
             <div class="acc-row">
                 <span class="acc-name">신부 김수정</span>
-                <span class="acc-num">은행명 000-000-000000</span><br>
-                <button class="copy-btn" onclick="copyToClipboard('000-000-000000', '김수정')">계좌번호 복사</button>
+                <span class="acc-num">NH농협 302-0884-0299-41</span><br>
+                <button class="copy-btn" onclick="copyToClipboard('302-0884-0299-41', '김수정')">계좌번호 복사</button>
             </div>
         </div>
     </div>
@@ -330,14 +346,12 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    // 갤러리 슬라이더 설정
     var swiper = new Swiper(".mySwiper", {
         loop: true,
         pagination: { el: ".swiper-pagination", clickable: true },
         navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
     });
 
-    // 스크롤 애니메이션 설정 (부드럽게 나타나는 효과)
     document.addEventListener('DOMContentLoaded', function() {
         const fadeElements = document.querySelectorAll('.fade-up');
         const observer = new IntersectionObserver((entries) => {
@@ -346,12 +360,11 @@
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.15 }); // 15% 정도 보일 때 애니메이션 시작
+        }, { threshold: 0.15 });
         
         fadeElements.forEach(el => observer.observe(el));
     });
 
-    // 계좌번호 복사 기능
     function copyToClipboard(val, name) {
         var t = document.createElement("textarea");
         document.body.appendChild(t);
