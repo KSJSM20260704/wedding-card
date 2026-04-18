@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>성민 & 수정 결혼합니다</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Noto+Serif+KR:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Noto+Serif+KR:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
     <style>
+        /* --- 기본 디자인 언어 --- */
         :root {
             --bg-color: #ffffff;
             --text-color: #2b2b2b;
@@ -33,8 +35,10 @@
             background-color: var(--bg-color);
             box-shadow: 0 10px 30px rgba(0,0,0,0.03);
             overflow: hidden;
+            position: relative; /* 라이트박스 기준점 */
         }
 
+        /* 스크롤 애니메이션 효과 */
         .fade-up {
             opacity: 0;
             transform: translateY(30px);
@@ -55,42 +59,44 @@
             margin-bottom: 50px;
         }
 
-        .main-cover { padding-top: 80px; padding-bottom: 40px; }
-        .main-names {
-            font-size: 24px;
-            font-weight: 400;
-            letter-spacing: 6px;
-            margin-bottom: 20px;
+        /* --- 1. 메인 커버 (요청하신 대로 이름 빼고 문구 디자인) --- */
+        .main-cover { 
+            padding-top: 110px; 
+            padding-bottom: 70px;
         }
-        .main-date {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 16px;
-            letter-spacing: 2px;
+        
+        /* Wegetting married 필기체 디자인 */
+        .cover-script {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 58px;
             color: var(--point-color);
+            line-height: 1;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
         }
 
+        /* 2026 07 04 날짜 디자인 */
+        .cover-date {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 19px;
+            font-weight: 300;
+            letter-spacing: 5px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        /* 메인 사진 영역 */
         .main-img-wrap {
             width: 100%;
             height: 550px;
             background-color: #f5f5f5;
-            position: relative;
         }
         .main-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .overlay-script {
-            position: absolute;
-            bottom: -30px;
-            right: 15px;
-            font-family: 'Pinyon Script', cursive;
-            font-size: 45px;
-            color: #ffffff;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-            z-index: 2;
-        }
 
+        /* --- 2. 초대글 --- */
         .invitation-text { font-size: 15px; line-height: 2.3; color: #444; }
 
-        /* --- 혼주 정보 세로 라인 정렬 --- */
+        /* 혼주 정보 수직 정렬 수정 */
         .parents-info {
             margin-top: 60px;
             display: flex;
@@ -118,12 +124,80 @@
             margin-left: 20px;
         }
 
-        .swiper { width: 100%; height: 500px; }
-        .swiper-slide { background-color: #f5f5f5; }
-        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
-        .swiper-button-next, .swiper-button-prev { color: #fff !important; text-shadow: 0 0 5px rgba(0,0,0,0.3); }
-        .swiper-pagination-bullet-active { background: var(--point-color) !important; }
+        /* --- 3. 갤러리 (인스타그램 바둑판 디자인) --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3열 바둑판 */
+            gap: 4px; /* 사진 사이 간격 */
+            margin-top: 40px;
+        }
+        .grid-item {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1; /* 정사각형 비율 유지 */
+            background-color: #f5f5f5;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .grid-item:hover img {
+            transform: scale(1.05); /* 마우스 호버 시 살짝 확대 */
+        }
 
+        /* --- 4. 라이트박스 (클릭 시 크게 보기) --- */
+        #lightbox {
+            display: none; /* 평소엔 숨김 */
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* 라이트박스 내부 Swiper 설정 */
+        .lb-swiper {
+            width: 100%;
+            height: 100%;
+        }
+        .lb-swiper .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lb-swiper .swiper-slide img {
+            max-width: 95%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        /* 닫기 버튼 */
+        .close-lb {
+            position: absolute;
+            top: 20px; right: 25px;
+            font-size: 35px;
+            color: #fff;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 10010;
+        }
+
+        /* Swiper 네비게이션 색상 변경 */
+        #lightbox .swiper-button-next, #lightbox .swiper-button-prev {
+            color: #fff !important;
+            opacity: 0.7;
+        }
+        #lightbox .swiper-pagination-bullet { background: rgba(255,255,255,0.5) !important; }
+        #lightbox .swiper-pagination-bullet-active { background: #fff !important; }
+
+        /* --- 나머지 섹션 (유지) --- */
         .calendar-wrap { margin-top: 40px; }
         .calendar {
             display: grid;
@@ -148,7 +222,6 @@
             margin: 0 auto;
         }
 
-        /* --- 예식장 정보 중앙 정렬 --- */
         .location-info { text-align: center; background: #fafafa; padding: 40px 25px; margin-top: 20px; }
         .location-info strong { display: block; font-size: 20px; margin-bottom: 10px; font-weight: 500; }
         .location-info p { margin: 0 0 30px 0; font-size: 14px; color: #666; line-height: 1.6; }
@@ -168,7 +241,6 @@
         }
         .btn:hover { background-color: #f9f9f9; }
 
-        /* --- 계좌번호 한 줄 레이아웃 --- */
         .acc-box { text-align: left; margin-bottom: 40px; }
         .acc-title {
             font-size: 16px;
@@ -218,13 +290,12 @@
 <div class="wrap">
     
     <div class="main-cover fade-up">
-        <div class="main-names">조성민 · 김수정</div>
-        <div class="main-date">July 4th, 2026</div>
+        <div class="cover-script">Wegetting married</div>
+        <div class="cover-date">2026 07 04</div>
     </div>
 
     <div class="main-img-wrap fade-up">
         <img src="main.jpg" alt="메인사진">
-        <div class="overlay-script">We're getting married</div>
     </div>
 
     <div class="sec fade-up">
@@ -249,16 +320,29 @@
         </div>
     </div>
 
-    <div class="sec fade-up" style="background-color: #fafafa; padding-bottom: 110px;">
+    <div class="sec fade-up" style="background-color: #fafafa; padding-left: 10px; padding-right: 10px;">
         <div class="sec-title">Gallery</div>
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="1.jpg" alt="웨딩사진 1"></div>
-                <div class="swiper-slide"><img src="2.jpg" alt="웨딩사진 2"></div>
-                <div class="swiper-slide"><img src="3.jpg" alt="웨딩사진 3"></div>
-                <div class="swiper-slide"><img src="4.jpg" alt="웨딩사진 4"></div>
-                <div class="swiper-slide"><img src="5.jpg" alt="웨딩사진 5"></div>
+        <p style="font-size: 13px; color: #888; margin-top: -30px; margin-bottom: 30px;">사진을 클릭하면 크게 보실 수 있습니다</p>
+        
+        <div class="gallery-grid" id="galleryGrid">
+            <div class="grid-item" data-index="0"><img src="1.jpg" alt="웨딩사진 1"></div>
+            <div class="grid-item" data-index="1"><img src="2.jpg" alt="웨딩사진 2"></div>
+            <div class="grid-item" data-index="2"><img src="3.jpg" alt="웨딩사진 3"></div>
+            <div class="grid-item" data-index="3"><img src="4.jpg" alt="웨딩사진 4"></div>
+            <div class="grid-item" data-index="4"><img src="5.jpg" alt="웨딩사진 5"></div>
             </div>
+    </div>
+
+    <div id="lightbox">
+        <button class="close-lb" onclick="closeLightbox()">&times;</button>
+        <div class="swiper lb-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="1.jpg" alt="웨딩사진 1 큰 이미지"></div>
+                <div class="swiper-slide"><img src="2.jpg" alt="웨딩사진 2 큰 이미지"></div>
+                <div class="swiper-slide"><img src="3.jpg" alt="웨딩사진 3 큰 이미지"></div>
+                <div class="swiper-slide"><img src="4.jpg" alt="웨딩사진 4 큰 이미지"></div>
+                <div class="swiper-slide"><img src="5.jpg" alt="웨딩사진 5 큰 이미지"></div>
+                </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-pagination"></div>
@@ -359,20 +443,45 @@
     </div>
 
     <div class="footer">
-        축복해 주셔서 감사합니다.<br>예쁘게 잘 살겠습니다.
+        감사합니다.<br>예쁘게 잘 살겠습니다.
     </div>
 
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    var swiper = new Swiper(".mySwiper", {
-        loop: true,
-        pagination: { el: ".swiper-pagination", clickable: true },
-        navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+    // 1. 라이트박스 내부 Swiper 초기화
+    var lbSwiper = new Swiper(".lb-swiper", {
+        loop: true, // 무한 반복
+        speed: 400, // 넘김 속도
+        spaceBetween: 10, // 사진 사이 간격
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        keyboard: true, // 키보드 방향키 제어 허용
     });
 
-    document.addEventListener('DOMContentLoaded', function() {
+    // 2. 라이트박스 열기 함수
+    function openLightbox(index) {
+        document.getElementById("lightbox").style.display = "flex"; // 라이트박스 표시
+        lbSwiper.slideToLoop(index, 0); // 클릭한 사진의 인덱스로 Swiper 이동 (속도 0으로 즉시 이동)
+        document.body.style.overflow = "hidden"; // 배경 스크롤 방지
+    }
+
+    // 3. 라이트박스 닫기 함수
+    function closeLightbox() {
+        document.getElementById("lightbox").style.display = "none"; // 라이트박스 숨김
+        document.body.style.overflow = "auto"; // 배경 스크롤 허용
+    }
+
+    // 4. 갤러리 그리드 아이템 클릭 이벤트 연결
+    document.addEventListener("DOMContentLoaded", function() {
+        // 스크롤 애니메이션 초기화 (기존 유지)
         const fadeElements = document.querySelectorAll('.fade-up');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -381,10 +490,27 @@
                 }
             });
         }, { threshold: 0.15 });
-        
         fadeElements.forEach(el => observer.observe(el));
+
+        // --- 갤러리 클릭 이벤트 추가 ---
+        const gridItems = document.querySelectorAll("#galleryGrid .grid-item");
+        gridItems.forEach(item => {
+            item.addEventListener("click", function() {
+                // 각 grid-item에 설정된 data-index 값을 가져와 숫자로 변환
+                const index = parseInt(this.getAttribute("data-index"), 10);
+                openLightbox(index); // 해당 인덱스로 라이트박스 열기
+            });
+        });
+        
+        // 라이트박스 검은 배경 클릭 시 닫기 (사진 영역 제외)
+        document.getElementById("lightbox").addEventListener("click", function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
     });
 
+    // 계좌번호 복사 기능 (기존 유지)
     function copyToClipboard(val, name) {
         var t = document.createElement("textarea");
         document.body.appendChild(t);
@@ -398,3 +524,4 @@
 
 </body>
 </html>
+
