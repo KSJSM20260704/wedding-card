@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>성민 & 수정 결혼합니다</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Serif+KR:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+KR:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
     <style>
         :root {
             --bg-color: #ffffff;
             --text-color: #2b2b2b;
-            --point-color: #bfa57d; /* 이미지 속 골드/베이지 톤 */
-            --gray-text: #777777;
-            --line-color: #f2f2f2;
+            --point-color: #9c8a7c;
+            --line-color: #eaeaea;
         }
 
         body {
@@ -38,7 +36,6 @@
             position: relative;
         }
 
-        /* 부드러운 스크롤 애니메이션 */
         .fade-up {
             opacity: 0;
             transform: translateY(30px);
@@ -59,7 +56,7 @@
             margin-bottom: 50px;
         }
 
-        /* --- 1. 메인 커버 (이미지 스타일 적용) --- */
+        /* --- 1. 메인 커버 (요청하신 디자인 코드 구현) --- */
         .main-cover {
             position: relative;
             width: 100%;
@@ -70,121 +67,139 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.85; /* 이미지 위 문구 가독성을 위해 약간 어둡게 */
+            opacity: 0.9;
         }
         .cover-content {
             position: absolute;
-            top: 15%; /* 상단 위치 */
+            top: 10%; /* 문구를 상단에 배치 */
             left: 0; width: 100%;
             z-index: 10;
+            color: #ffffff; /* 사진 위에 올릴 때 잘 보이도록 흰색 계열에 그림자 */
+            text-shadow: 1px 1px 8px rgba(0,0,0,0.3);
         }
-        .cover-script {
-            font-family: 'Pinyon Script', cursive;
-            font-size: 55px;
-            color: var(--point-color);
-            line-height: 1;
+        
+        .cover-korean {
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
             margin-bottom: 15px;
-            text-shadow: 1px 1px 10px rgba(0,0,0,0.2);
         }
-        .cover-date-main {
+        .cover-main-title {
             font-family: 'Cormorant Garamond', serif;
+            font-size: 52px;
+            line-height: 1.1;
+            font-weight: 600;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+        /* 별 모양 데코레이션 */
+        .sparkle {
             font-size: 20px;
-            letter-spacing: 5px;
-            color: #ffffff;
-            font-weight: 300;
+            position: absolute;
+            font-family: sans-serif;
+        }
+        .sp-1 { top: -10px; left: -30px; }
+        .sp-2 { bottom: 15px; right: -35px; }
+        
+        .cover-names {
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+        .cursive-and {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 24px;
+            margin: 0 5px;
+            font-weight: normal;
+            text-transform: lowercase;
         }
 
-        /* --- 2. 이미지 속 감성 문구 섹션 --- */
-        .quote-sec {
-            padding: 100px 25px;
-            background-color: var(--bg-color);
-        }
-        .quote-text {
-            font-size: 15px;
-            color: var(--text-color);
-            line-height: 2;
-            font-weight: 300;
-        }
-
-        /* 초대글 & 혼주 정보 */
+        /* --- 2. 초대글 & 혼주 정보 (완벽 정렬 적용) --- */
         .invitation-text { font-size: 15px; line-height: 2.3; color: #444; }
+        
         .parents-info {
             margin-top: 60px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .parents-line {
-            display: flex;
             width: 100%;
-            max-width: 320px;
-            justify-content: center;
-            line-height: 2.5;
         }
-        .parents-relation { flex: 1.3; text-align: right; font-size: 16px; color: #444; }
-        .couple-name-tag { flex: 0.7; text-align: left; font-size: 18px; font-weight: 500; margin-left: 20px; }
+        .parents-table {
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        .parents-table td {
+            padding: 7px 0;
+            vertical-align: middle;
+        }
+        .pt-parents {
+            text-align: right;
+            font-size: 16px;
+            color: #444;
+        }
+        .pt-relation {
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            padding: 0 15px;
+        }
+        .pt-name {
+            text-align: left;
+            font-size: 18px;
+            font-weight: 500;
+            color: #222;
+        }
 
-        /* --- 3. 갤러리 (인스타그램 바둑판 스타일) --- */
+        /* --- 3. 갤러리 --- */
         .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 4px;
-            margin-top: 40px;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 40px;
         }
         .grid-item {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            background-color: #f5f5f5;
-            cursor: pointer;
-            overflow: hidden;
+            position: relative; width: 100%; aspect-ratio: 1 / 1; background-color: #f5f5f5; cursor: pointer; overflow: hidden;
         }
         .grid-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
         .grid-item:hover img { transform: scale(1.05); }
 
-        /* 라이트박스 크게 보기 */
-        #lightbox {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.95); z-index: 10000; justify-content: center; align-items: center;
-        }
+        #lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); z-index: 10000; justify-content: center; align-items: center; }
         .lb-swiper { width: 100%; height: 100%; }
         .lb-swiper .swiper-slide { display: flex; align-items: center; justify-content: center; }
         .lb-swiper .swiper-slide img { max-width: 95%; max-height: 90%; object-fit: contain; }
         .close-lb { position: absolute; top: 20px; right: 25px; font-size: 35px; color: #fff; background: transparent; border: none; cursor: pointer; z-index: 10010; }
 
-        /* --- 4. 달력 (7월 4일) --- */
+        /* --- 4. 달력 --- */
         .calendar-wrap { margin-top: 40px; }
-        .calendar {
-            display: grid; grid-template-columns: repeat(7, 1fr); gap: 15px 5px;
-            max-width: 320px; margin: 0 auto; font-size: 15px; color: #555;
-        }
+        .calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 15px 5px; max-width: 320px; margin: 0 auto; font-size: 15px; color: #555; }
         .cal-head { color: #999; font-size: 12px; border-bottom: 1px solid var(--line-color); padding-bottom: 10px; margin-bottom: 10px; }
         .sun { color: #d98880; }
-        .d-day {
-            background-color: var(--point-color); color: #fff !important; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; margin: 0 auto;
-        }
+        .d-day { background-color: var(--point-color); color: #fff !important; border-radius: 50%; display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; margin: 0 auto; }
 
-        /* --- 5. 예식장 정보 (중앙 정렬) --- */
+        /* --- 5. 오시는 길 --- */
         .location-info { text-align: center; background: #fafafa; padding: 50px 25px; margin-top: 20px; }
         .location-info strong { display: block; font-size: 20px; margin-bottom: 12px; font-weight: 500; }
         .location-info p { margin: 0 0 35px 0; font-size: 14px; color: #666; line-height: 1.6; }
         .btn-group { display: flex; justify-content: center; gap: 10px; }
         .btn { flex: 1; max-width: 140px; padding: 14px 0; background-color: #fff; border: 1px solid #ddd; color: #333; text-decoration: none; font-size: 13px; }
 
-        /* --- 6. 계좌번호 (한 줄 정렬 & 요청 순서) --- */
+        /* --- 6. 계좌번호 (요청하신 정밀 정렬 적용) --- */
         .acc-box { text-align: left; margin-bottom: 40px; }
-        .acc-title { font-size: 16px; color: var(--point-color); border-bottom: 1px solid var(--line-color); padding-bottom: 12px; margin-bottom: 25px; font-weight: 500; }
+        .acc-title { font-size: 16px; color: var(--point-color); border-bottom: 1px solid var(--line-color); padding-bottom: 12px; margin-bottom: 20px; font-weight: 500; }
         .acc-row { 
             display: flex; justify-content: space-between; align-items: center; 
-            margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid #f9f9f9;
+            margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #f9f9f9;
         }
-        .acc-text-wrap { display: flex; align-items: center; gap: 12px; flex: 1; overflow: hidden; }
-        .acc-name { font-size: 15px; font-weight: 500; white-space: nowrap; }
+        
+        .acc-text-wrap { display: flex; align-items: center; flex: 1; overflow: hidden; }
+        
+        /* '신 랑'과 '아 버 지'의 가로 폭을 강제로 똑같이 42px로 고정하고, 글자를 양끝으로 쫙 벌립니다 */
+        .acc-label-box { 
+            display: flex; justify-content: space-between; width: 42px; 
+            font-size: 14px; color: #666; margin-right: 15px; flex-shrink: 0; 
+        }
+        .acc-label-box span { display: inline-block; }
+        
+        /* 이름의 길이 공간도 똑같이 고정하여 세로줄이 완벽하게 맞도록 설정 */
+        .acc-name { font-size: 15px; font-weight: 500; margin-right: 15px; flex-shrink: 0; width: 45px; text-align: center; }
+        
         .acc-num { font-size: 13px; color: #777; font-family: sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .copy-btn { 
-            background: transparent; border: 1px solid #ddd; color: #888; padding: 5px 12px; font-size: 11px; cursor: pointer; flex-shrink: 0;
-        }
+        .copy-btn { background: transparent; border: 1px solid #ddd; color: #888; padding: 5px 12px; font-size: 11px; cursor: pointer; flex-shrink: 0; }
 
         .footer { padding: 60px 20px; background-color: var(--point-color); color: #fff; font-size: 14px; letter-spacing: 2px; }
     </style>
@@ -196,17 +211,14 @@
     <div class="main-cover">
         <img src="main.jpg" alt="메인사진" class="main-img">
         <div class="cover-content">
-            <div class="cover-script">We getting married</div>
-            <div class="cover-date-main">2026 07 04</div>
+            <p class="cover-korean">우리 결혼합니다!</p>
+            <div class="cover-main-title">
+                <span class="sparkle sp-1">✦</span>
+                We're Getting<br>Married
+                <span class="sparkle sp-2">✦</span>
+            </div>
+            <p class="cover-names">조성민 <span class="cursive-and">and</span> 김수정</p>
         </div>
-    </div>
-
-    <div class="quote-sec sec fade-up">
-        <p class="quote-text">
-            Sun, July 4th, 2026 -<br>
-            Forever begins with a single step,<br>
-            And love guides us every step of the way.
-        </p>
     </div>
 
     <div class="sec fade-up">
@@ -220,14 +232,18 @@
         </div>
         
         <div class="parents-info">
-            <div class="parents-line">
-                <div class="parents-relation">조윤형 · 문정희 의 아들</div>
-                <div class="couple-name-tag">조성민</div>
-            </div>
-            <div class="parents-line">
-                <div class="parents-relation">김원영 · 백경희 의 딸</div>
-                <div class="couple-name-tag">김수정</div>
-            </div>
+            <table class="parents-table">
+                <tr>
+                    <td class="pt-parents">조윤형 · 문정희</td>
+                    <td class="pt-relation">의 아들</td>
+                    <td class="pt-name">조성민</td>
+                </tr>
+                <tr>
+                    <td class="pt-parents">김원영 · 백경희</td>
+                    <td class="pt-relation">의 딸</td>
+                    <td class="pt-name">김수정</td>
+                </tr>
+            </table>
         </div>
     </div>
 
@@ -293,15 +309,27 @@
         <div class="acc-box">
             <div class="acc-title">신랑측 계좌</div>
             <div class="acc-row">
-                <div class="acc-text-wrap"><span class="acc-name">신랑 조성민</span><span class="acc-num">카카오뱅크 3333-24-2780476</span></div>
+                <div class="acc-text-wrap">
+                    <div class="acc-label-box"><span>신</span><span>랑</span></div>
+                    <span class="acc-name">조성민</span>
+                    <span class="acc-num">카카오뱅크 3333-24-2780476</span>
+                </div>
                 <button class="copy-btn" onclick="copyToClipboard('3333-24-2780476', '조성민')">복사</button>
             </div>
             <div class="acc-row">
-                <div class="acc-text-wrap"><span class="acc-name">아버지 조윤형</span><span class="acc-num">하나은행 374-910025-96807</span></div>
+                <div class="acc-text-wrap">
+                    <div class="acc-label-box"><span>아</span><span>버</span><span>지</span></div>
+                    <span class="acc-name">조윤형</span>
+                    <span class="acc-num">하나은행 374-910025-96807</span>
+                </div>
                 <button class="copy-btn" onclick="copyToClipboard('374-910025-96807', '조윤형')">복사</button>
             </div>
             <div class="acc-row">
-                <div class="acc-text-wrap"><span class="acc-name">어머니 문정희</span><span class="acc-num">카카오뱅크 3333-34-4275498</span></div>
+                <div class="acc-text-wrap">
+                    <div class="acc-label-box"><span>어</span><span>머</span><span>니</span></div>
+                    <span class="acc-name">문정희</span>
+                    <span class="acc-num">카카오뱅크 3333-34-4275498</span>
+                </div>
                 <button class="copy-btn" onclick="copyToClipboard('3333-34-4275498', '문정희')">복사</button>
             </div>
         </div>
@@ -309,15 +337,27 @@
         <div class="acc-box" style="margin-top: 50px;">
             <div class="acc-title">신부측 계좌</div>
             <div class="acc-row">
-                <div class="acc-text-wrap"><span class="acc-name">신부 김수정</span><span class="acc-num">NH농협 302-0884-0299-41</span></div>
+                <div class="acc-text-wrap">
+                    <div class="acc-label-box"><span>신</span><span>부</span></div>
+                    <span class="acc-name">김수정</span>
+                    <span class="acc-num">NH농협 302-0884-0299-41</span>
+                </div>
                 <button class="copy-btn" onclick="copyToClipboard('302-0884-0299-41', '김수정')">복사</button>
             </div>
             <div class="acc-row">
-                <div class="acc-text-wrap"><span class="acc-name">아버지 김원영</span><span class="acc-num">NH농협 302-0859-9890-91</span></div>
+                <div class="acc-text-wrap">
+                    <div class="acc-label-box"><span>아</span><span>버</span><span>지</span></div>
+                    <span class="acc-name">김원영</span>
+                    <span class="acc-num">NH농협 302-0859-9890-91</span>
+                </div>
                 <button class="copy-btn" onclick="copyToClipboard('302-0859-9890-91', '김원영')">복사</button>
             </div>
             <div class="acc-row">
-                <div class="acc-text-wrap"><span class="acc-name">어머니 백경희</span><span class="acc-num">NH농협 302-1430-0848-21</span></div>
+                <div class="acc-text-wrap">
+                    <div class="acc-label-box"><span>어</span><span>머</span><span>니</span></div>
+                    <span class="acc-name">백경희</span>
+                    <span class="acc-num">NH농협 302-1430-0848-21</span>
+                </div>
                 <button class="copy-btn" onclick="copyToClipboard('302-1430-0848-21', '백경희')">복사</button>
             </div>
         </div>
